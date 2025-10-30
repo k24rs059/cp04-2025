@@ -155,7 +155,8 @@
     var period = 0;
     var rest = 0;
     var etime = 0;
-
+    var m = 0;
+    var s = 0;
 
     
     // ボタンの初期設定
@@ -203,20 +204,27 @@
         
     }
     
+    
  
     // 繰り返し実行する処理
     function timer(){  
         if(active){
             etime = parseInt( (new Date() - startTime)/1000 );
             rest = period - etime;
+            m = parseInt(rest/60);
+            s = parseInt(rest - m*60);
             $("#time").html("経過時間： " + etime);
-            $("#remain").html("残り時間： " + rest);
+            //$("#remain").html("残り時間： " + rest);
+            $("#remain").html("残り時間： " + m + "分" + s + "秒");
             analog(rest);
+
+            if(rest<=0){
+                active = false;
+                alarm();
+            }
         }
-        if(rest<=0){
-            active = false;
-            alarm();
-        }
+
+        
     } 
 
   </script>
@@ -232,7 +240,7 @@
     <button id="btnA">Start</button>  
     <button id="btnB">Stop</button>  
     <button id="btnC">Set</button>  
-    <input type="number" id="minute" value=0 >
-    <input type="number" id="second" value=15 >
+    <input type="number" id="minute" value=3 >
+    <input type="number" id="second" value=0 >
 </body>
 </html>
