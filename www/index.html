@@ -164,6 +164,7 @@
     var m2 = 0;
     var s2 = 0;
     var a = false;
+    var b = 0;
 
     
     // ボタンの初期設定
@@ -213,7 +214,13 @@
     }
 
     function btnDClick(e){
-        a = true;
+        b += 1;
+        if(b%2==1){
+            a = true;
+        }else{
+            a = false;
+        }
+        
     }
     
     
