@@ -38,6 +38,10 @@
         $('#btnC').click(function(e) {
             btnCClick(e);
         });
+
+        $('#btnD').click(function(e) {
+            btnDClick(e);
+        });
         init();
     });
     
@@ -157,6 +161,9 @@
     var etime = 0;
     var m = 0;
     var s = 0;
+    var m2 = 0;
+    var s2 = 0;
+    var a = false;
 
     
     // ボタンの初期設定
@@ -164,6 +171,7 @@
         $('#btnA').prop('disabled', false);
         $('#btnB').prop('disabled', false);
         $('#btnC').prop('disabled', false);
+        $('#btnD').prop('disabled', false);
         
     }
 
@@ -193,7 +201,7 @@
     function btnBClick(e){
         active = false;
     }
-
+    
     // ButtonCがクリックされた時の処理
     function btnCClick(e){
         alarm();
@@ -202,6 +210,10 @@
         $("#time").html("経過時間： 0");
         $("#remain").html("残り時間： " + period);
         
+    }
+
+    function btnDClick(e){
+        a = true;
     }
     
     
@@ -213,16 +225,23 @@
             rest = period - etime;
             m = parseInt(rest/60);
             s = parseInt(rest - m*60);
-            $("#time").html("経過時間： " + etime);
-            //$("#remain").html("残り時間： " + rest);
+            m2 = parseInt(etime/60);
+            s2 = parseInt(etime-m2*60);
             $("#remain").html("残り時間： " + m + "分" + s + "秒");
+            //$("#time").html("経過時間:"+m2+"分"+s2+"秒");
+            if(a==false){
+                $("#time").html("経過時間： " + etime);
+            }else{
+                $("#time").html("経過時間:"+m2+"分"+s2+"秒");
+            }
+            
             analog(rest);
 
             if(rest<=0){
                 active = false;
                 alarm();
             }
-            
+
         }
     } 
 
@@ -239,7 +258,7 @@
     <button id="btnA">Start</button>  
     <button id="btnB">Stop</button>  
     <button id="btnC">Set</button>
-    <button id="btnD">Set</button>  
+    <button id="btnD">ButtonD</button>  
     <input type="number" id="minute" value=3 >
     <input type="number" id="second" value=0 >
 </body>
