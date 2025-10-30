@@ -235,11 +235,11 @@
             m2 = parseInt(etime/60);
             s2 = parseInt(etime-m2*60);
             $("#remain").html("残り時間： " + m + "分" + s + "秒");
-            //$("#time").html("経過時間:"+m2+"分"+s2+"秒");
+            
             if(a==false){
                 $("#time").html("経過時間： " + etime);
             }else{
-                $("#time").html("経過時間:"+m2+"分"+s2+"秒");
+                $("#time").html("経過時間 ： "+m2+"分"+s2+"秒");
             }
             
             analog(rest);
